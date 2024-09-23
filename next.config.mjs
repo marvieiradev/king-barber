@@ -2,7 +2,7 @@
 const nextConfig = {
     images: {
         remotePatterns: [
-            { hostname: "utfs.io", },
+            { hostname: "king-barber.s3.amazonaws.com", },
         ]
     }
 };
