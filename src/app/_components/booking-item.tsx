@@ -31,6 +31,7 @@ import {
 import { deleteBooking } from "../_actions/delete-booking";
 import { toast } from "sonner";
 import { useState } from "react";
+import BookingSumary from "./booking-sumary";
 
 interface BookingItemProps {
   booking: Prisma.BookingGetPayload<{
@@ -124,41 +125,13 @@ const BookingItem = ({ booking }: BookingItemProps) => {
           >
             {isConfirmed ? "Confirmado" : "Finalizado"}
           </Badge>
-
-          <Card className="mt-3 mb-6">
-            <CardContent className="p-3 space-y-3">
-              <div className="flex justify-between items-center">
-                <h2 className="font-bold">{booking.service.name}</h2>
-                <p className="text-sm font-bold">
-                  {Intl.NumberFormat("Pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  }).format(Number(booking.service.price))}
-                </p>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <h2 className="text-sm text-gray-400">Data</h2>
-                <p className="text-sm">
-                  {format(booking.date, "d 'de' MMMM", {
-                    locale: ptBR,
-                  })}
-                </p>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <h2 className="text-sm text-gray-400">Horário</h2>
-                <p className="text-sm">
-                  {format(booking.date, "HH:mm", { locale: ptBR })}
-                </p>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <h2 className="text-sm text-gray-400">Barbearia</h2>
-                <p className="text-sm">{barbershop.name}</p>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="mb-3 mt-6">
+            <BookingSumary
+              barbershop={barbershop}
+              service={booking.service}
+              selectedDate={booking.date}
+            />
+          </div>
           <div className="space-y-3">
             {barbershop.phones.map((phone) => (
               <PhoneItem key={phone} phone={phone} />
@@ -181,13 +154,15 @@ const BookingItem = ({ booking }: BookingItemProps) => {
                 </AlertDialogTrigger>
                 <AlertDialogContent className="w-[90%] flex flex-col items-center">
                   <AlertDialogHeader>
-                    <AlertDialogTitle>Cancelar reserva?</AlertDialogTitle>
+                    <AlertDialogTitle className="text-center">
+                      Cancelar reserva?
+                    </AlertDialogTitle>
                     <AlertDialogDescription>
                       Tem certeza que deseja fazer o cancelamento da sua
                       reserva?
                     </AlertDialogDescription>
                   </AlertDialogHeader>
-                  <AlertDialogFooter className="w-full">
+                  <AlertDialogFooter className="w-full h-full flex flex-row gap-2 items-baseline">
                     <AlertDialogCancel className="w-full">
                       Voltar
                     </AlertDialogCancel>
