@@ -62,8 +62,8 @@ const BookingItem = ({ booking }: BookingItemProps) => {
 
   return (
     <Sheet open={isSheetOpen} onOpenChange={handleSheetOpenChange}>
-      <SheetTrigger className="w-full min-w-[90%]">
-        <Card className="min-w-[90%]">
+      <SheetTrigger className="w-[325px]">
+        <Card className="w-[325px]">
           <CardContent className="flex justify-between p-0">
             <div className="flex flex-col gap-2 p-5 py-5 pl-5">
               <Badge
@@ -77,7 +77,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
                 <Avatar className="h-6 w-6">
                   <AvatarImage src={barbershop.imageUrl} />
                 </Avatar>
-                <p className="text-sm">{barbershop.name}</p>
+                <p className="text-sm truncate">{barbershop.name}</p>
               </div>
             </div>
 

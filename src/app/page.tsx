@@ -22,13 +22,13 @@ const Home = async () => {
 
   const confirmedBookings = await getConfirmedBookings();
   return (
-    <div>
+    <div className="">
       <Header />
-      <div className="p-5">
-        <h2 className="text-xl font-bold">
+      <div className="p-5 md:px-10 lg:px-20">
+        <h2 className="text-xl font-bold lg:text-2xl">
           Olá {session?.user ? session.user.name : "bem-vindo!"}!
         </h2>
-        <p>
+        <p className="lg:text-lg">
           <span className="capitalize">
             {format(new Date(), "EE, dd", { locale: ptBR })}
           </span>
@@ -42,7 +42,7 @@ const Home = async () => {
           <Search />
         </div>
 
-        <div className="flex gap-3 mt-6 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+        <div className="flex gap-3 mt-6 overflow-x-scroll [&::-webkit-scrollbar]:hidden md:justify-center md:px-10 lg:px-20">
           {quickSearchOptions.map((option) => (
             <Button
               className="gap-2"
@@ -63,7 +63,7 @@ const Home = async () => {
           ))}
         </div>
 
-        <div className="relative w-full h-[150px] mt-6">
+        <div className="relative w-full h-[150px] mt-6 md:h-[300px] md:px-10 lg:px-20">
           <Image
             alt="banner"
             src="/banner-01.png"
@@ -74,10 +74,10 @@ const Home = async () => {
 
         {confirmedBookings.length > 0 && (
           <>
-            <h2 className="mt-6 mb-3 uppercase text-xs font-bold text-gray-400">
+            <h2 className="mt-6 mb-3 uppercase text-xs font-bold text-gray-400 md:text-base">
               Agendamentos
             </h2>
-            <div className="flex overflow-x-auto gap-3 [&::-webkit-scrollbar]:hidden">
+            <div className="flex overflow-x-auto gap-3 md:flex-wrap [&::-webkit-scrollbar]:hidden">
               {confirmedBookings.map((booking) => (
                 <BookingItem
                   key={booking.id}
@@ -88,19 +88,19 @@ const Home = async () => {
           </>
         )}
 
-        <h2 className="mt-6 mb-3 uppercase text-xs font-bold text-gray-400">
+        <h2 className="mt-6 mb-3 uppercase text-xs font-bold text-gray-400 md:text-base">
           Recomendados
         </h2>
-        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+        <div className="flex gap-4 overflow-auto md:flex-wrap [&::-webkit-scrollbar]:hidden">
           {barbershops.map((barbershop) => (
             <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
         </div>
 
-        <h2 className="mt-6 mb-3 uppercase text-xs font-bold text-gray-400">
+        <h2 className="mt-6 mb-3 uppercase text-xs font-bold text-gray-400 md:text-base">
           Populares
         </h2>
-        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+        <div className="flex gap-4 overflow-auto md:flex-wrap [&::-webkit-scrollbar]:hidden">
           {popularBarbershops.map((barbershop) => (
             <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}

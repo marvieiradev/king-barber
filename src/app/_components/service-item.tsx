@@ -155,7 +155,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
 
   return (
     <>
-      <Card>
+      <Card className="w-[350px] md:w-[375px] lg:w-[400px]">
         <CardContent className="flex items-center gap-3 p-3">
           <div className="relative min-h-[110px] min-w-[110px] max-h-[110px] max-w-[110px]">
             <Image
@@ -187,40 +187,26 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                 >
                   Reservar
                 </Button>
-                <SheetContent className="px-0 overflow-y-auto">
+                <SheetContent className="overflow-y-auto">
                   <SheetHeader>
                     <SheetTitle>Fazer Reserva</SheetTitle>
                   </SheetHeader>
-                  <div className="border-b border-solid py-5">
+                  <div className="border-b border-solid py-5 ">
                     <Calendar
+                      className="h-full w-full flex p-0"
+                      classNames={{
+                        months:
+                          "flex w-full flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 flex-1",
+                        month: "space-y-4 w-full flex flex-col",
+                        table: "w-full h-full border-collapse space-y-1",
+                        head_row: "",
+                        row: "w-full mt-2",
+                      }}
                       mode="single"
                       locale={ptBR}
                       selected={selectedDay}
                       onSelect={handleDateSelect}
                       fromDate={new Date()}
-                      styles={{
-                        head_cell: {
-                          width: "100%",
-                          textTransform: "capitalize",
-                        },
-                        cell: {
-                          width: "100%",
-                        },
-                        button: {
-                          width: "100%",
-                        },
-                        nav_button_previous: {
-                          width: "32px",
-                          height: "32px",
-                        },
-                        nav_button_next: {
-                          width: "32px",
-                          height: "32px",
-                        },
-                        caption: {
-                          textTransform: "capitalize",
-                        },
-                      }}
                     />
                   </div>
                   {selectedDay && (

@@ -37,7 +37,17 @@ export default function RootLayout({
             <Footer />
           </div>
         </AuthProvider>
-        <Toaster position="top-center" />
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            classNames: {
+              toast:
+                "md:w-[500px] md:text-lg flex itens-center bg-primary border-none",
+              description: "md:text-lg",
+              actionButton: "md:text-lg",
+            },
+          }}
+        />
       </body>
     </html>
   );
