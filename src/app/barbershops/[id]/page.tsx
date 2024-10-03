@@ -1,3 +1,4 @@
+import Header from "@/app/_components/header";
 import PhoneItem from "@/app/_components/phone-item";
 import ServiceItem from "@/app/_components/service-item";
 import SidebarSheet from "@/app/_components/sidebar-sheet";
@@ -33,127 +34,134 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
   }
 
   return (
-    <div className="flex md:px-10 lg:px-20 gap-4 justify-center w-full">
-      <div className="w-full md:w-[70%]">
-        <div className="relative w-full h-[250px] md:h-[350px] lg:h-[450px]">
-          <Image
-            alt={`${barbershop?.name}`}
-            src={`${barbershop?.imageUrl}`}
-            fill
-            className="object-cover"
-          />
+    <>
+      <div className="hidden lg:block mb-4">
+        <Header />
+      </div>
+      <div className="flex md:px-10 lg:px-28 gap-4 justify-center w-full">
+        <div className="w-full md:w-[70%]">
+          <div className="relative w-full h-[250px] md:h-[350px] lg:h-[450px]">
+            <Image
+              alt={`${barbershop?.name}`}
+              src={`${barbershop?.imageUrl}`}
+              fill
+              className="object-cover"
+            />
 
-          <Button
-            size="icon"
-            variant="secondary"
-            className="absolute top-4 left-4"
-            asChild
-          >
-            <Link href="/">
-              <ChevronLeftIcon />
-            </Link>
-          </Button>
+            <Button
+              size="icon"
+              variant="secondary"
+              className="absolute top-4 left-4"
+              asChild
+            >
+              <Link href="/">
+                <ChevronLeftIcon />
+              </Link>
+            </Button>
 
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button
-                size="icon"
-                variant="outline"
-                className="absolute top-4 right-4"
-              >
-                <MenuIcon />
-              </Button>
-            </SheetTrigger>
-            <SidebarSheet />
-          </Sheet>
-        </div>
-
-        <div className="p-5 border-b border-solid">
-          <h1 className="font-bold text-xl mb-3">{barbershop?.name}</h1>
-          <div className="flex items-center gap-2 mb-2">
-            <MapPinIcon className="text-primary" size={18} />
-            <p className="text-sm">{barbershop?.address}</p>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button
+                  size="icon"
+                  variant="outline"
+                  className="absolute top-4 right-4 lg:hidden"
+                >
+                  <MenuIcon />
+                </Button>
+              </SheetTrigger>
+              <SidebarSheet />
+            </Sheet>
           </div>
-          <div className="flex items-center gap-2">
-            <StarIcon className="fill-primary text-primary" size={18} />
-            <p className="text-sm">5,0 (412 avaliações)</p>
-          </div>
-        </div>
-        <div className="p-5 border-b border-solid space-y-3 md:hidden">
-          <h2 className="text-xs font-bold text-gray-400 uppercase md:text-base">
-            Sobre nós
-          </h2>
-          <p className="text-sm text-justify">{barbershop?.description}</p>
-        </div>
 
-        <div className="p-5 space-y-3 border-b border-solid md:border-none">
-          <h2 className="text-xs font-bold text-gray-400 uppercase md:text-base mb-2">
-            Serviços
-          </h2>
-          <div className="space-y-3 flex flex-wrap justify-between items-end">
-            {barbershop.services.map((service) => (
-              <ServiceItem
-                key={service.id}
-                barbershop={JSON.parse(JSON.stringify(barbershop))}
-                service={JSON.parse(JSON.stringify(service))}
-              />
+          <div className="p-5 border-b border-solid">
+            <h1 className="font-bold text-xl mb-3">{barbershop?.name}</h1>
+            <div className="flex items-center gap-2 mb-2">
+              <MapPinIcon className="text-primary" size={18} />
+              <p className="text-sm">{barbershop?.address}</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <StarIcon className="fill-primary text-primary" size={18} />
+              <p className="text-sm">5,0 (412 avaliações)</p>
+            </div>
+          </div>
+          <div className="p-5 border-b border-solid space-y-3 md:hidden">
+            <h2 className="text-xs font-bold text-gray-400 uppercase md:text-base">
+              Sobre nós
+            </h2>
+            <p className="text-sm text-justify">{barbershop?.description}</p>
+          </div>
+
+          <div className="p-5 space-y-3 border-b border-solid md:border-none">
+            <h2 className="text-xs font-bold text-gray-400 uppercase md:text-base mb-2">
+              Serviços
+            </h2>
+            <div className="space-y-3 flex flex-wrap justify-between items-end">
+              {barbershop.services.map((service) => (
+                <ServiceItem
+                  key={service.id}
+                  barbershop={JSON.parse(JSON.stringify(barbershop))}
+                  service={JSON.parse(JSON.stringify(service))}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="p-5 space-y-3 lg:hidden">
+            {barbershop.phones.map((phone) => (
+              <PhoneItem key={phone} phone={phone} />
             ))}
           </div>
         </div>
-        <div className="p-5 space-y-3 lg:hidden">
-          {barbershop.phones.map((phone) => (
-            <PhoneItem key={phone} phone={phone} />
-          ))}
-        </div>
-      </div>
-      <div className="w-[400px] hidden md:flex md:space-y-5 h-fit">
-        <Card className="w-full p-2">
-          <CardContent className="w-full p-2 flex flex-col items-center gap-3 justify-center ">
-            <div className="relative h-[180px] flex items-end mt-2 w-full rounded-xl">
-              <Image
-                alt={`Mapa da barbearia ${barbershop.name}`}
-                src="/map.png"
-                fill
-                className="object-cover roundex-xl"
-              />
-              <div className="z-50 w-full mb-5 mx-3">
-                <div className="px-5 py-3 flex items-center gap-3 bg-background rounded-xl">
-                  <Avatar>
-                    <AvatarImage src={barbershop.imageUrl} />
-                  </Avatar>
-                  <div>
-                    <h3 className="font-bold">{barbershop.name}</h3>
-                    <p className="text-xs truncate">{barbershop.address}</p>
+        <div className="w-[400px] hidden md:flex md:space-y-5 h-fit">
+          <Card className="w-full p-2">
+            <CardContent className="w-full p-2 flex flex-col items-center gap-3 justify-center ">
+              <div className="relative h-[180px] flex items-end mt-2 w-full rounded-xl">
+                <Image
+                  alt={`Mapa da barbearia ${barbershop.name}`}
+                  src="/map.png"
+                  fill
+                  className="object-cover roundex-xl"
+                />
+                <div className="z-50 w-full mb-5 mx-3">
+                  <div className="px-5 py-3 flex items-center gap-3 bg-background rounded-xl">
+                    <Avatar>
+                      <AvatarImage src={barbershop.imageUrl} />
+                    </Avatar>
+                    <div>
+                      <h3 className="font-bold">{barbershop.name}</h3>
+                      <p className="text-xs truncate">{barbershop.address}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="py-5 border-b border-solid space-y-3">
-              <h2 className="text-xs font-bold text-gray-400 uppercase md:text-base">
-                Sobre nós
-              </h2>
-              <p className="text-sm text-justify">{barbershop?.description}</p>
-            </div>
-
-            <div className="mt-4 mb-4 w-full">
-              <div className="space-y-3">
-                {barbershop.phones.map((phone) => (
-                  <PhoneItem key={phone} phone={phone} />
-                ))}
+              <div className="py-5 border-b border-solid space-y-3">
+                <h2 className="text-xs font-bold text-gray-400 uppercase md:text-base">
+                  Sobre nós
+                </h2>
+                <p className="text-sm text-justify">
+                  {barbershop?.description}
+                </p>
               </div>
-            </div>
-            <div className="w-full border-b border-t border-solid py-6">
-              <WorkingDays />
-            </div>
-            <div className="flex w-full justify-between mt-4 mb-10">
-              <p className="text-base font-semibold">Em parceria com</p>
-              <Image alt="logo" src="/logo.png" height={20} width={130} />
-            </div>
-          </CardContent>
-        </Card>
+
+              <div className="mt-4 mb-4 w-full">
+                <div className="space-y-3">
+                  {barbershop.phones.map((phone) => (
+                    <PhoneItem key={phone} phone={phone} />
+                  ))}
+                </div>
+              </div>
+              <div className="w-full border-b border-t border-solid py-6">
+                <WorkingDays />
+              </div>
+              <div className="flex w-full justify-between mt-4 mb-10">
+                <p className="text-base font-semibold">Em parceria com</p>
+                <Image alt="logo" src="/logo.png" height={20} width={130} />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

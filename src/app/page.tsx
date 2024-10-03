@@ -24,7 +24,7 @@ const Home = async () => {
   return (
     <div className="">
       <Header />
-      <div className="p-5 md:px-10 lg:px-20">
+      <div className="p-5 md:px-10 lg:px-28">
         <h2 className="text-xl font-bold lg:text-2xl">
           Olá {session?.user ? session.user.name : "bem-vindo!"}!
         </h2>
@@ -42,10 +42,10 @@ const Home = async () => {
           <Search />
         </div>
 
-        <div className="flex gap-3 mt-6 overflow-x-scroll [&::-webkit-scrollbar]:hidden md:justify-center md:px-10 lg:px-20">
+        <div className="flex gap-3 mt-6 overflow-x-scroll [&::-webkit-scrollbar]:hidden md:justify-center md:px-10 lg:px-28">
           {quickSearchOptions.map((option) => (
             <Button
-              className="gap-2"
+              className="gap-2 lg:px-8"
               variant="secondary"
               key={option.title}
               asChild
@@ -63,7 +63,7 @@ const Home = async () => {
           ))}
         </div>
 
-        <div className="relative w-full h-[150px] mt-6 md:h-[300px] md:px-10 lg:px-20">
+        <div className="relative w-full h-[150px] mt-6 md:h-[300px] md:px-10 lg:hidden">
           <Image
             alt="banner"
             src="/banner-01.png"
