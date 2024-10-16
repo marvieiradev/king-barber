@@ -45,7 +45,7 @@ const Home = async () => {
         <div className="flex gap-3 mt-6 overflow-x-scroll [&::-webkit-scrollbar]:hidden md:justify-center md:px-10 lg:px-28">
           {quickSearchOptions.map((option) => (
             <Button
-              className="gap-2 lg:px-8"
+              className="gap-2 lg:px-4 xl:px-6"
               variant="secondary"
               key={option.title}
               asChild
@@ -63,7 +63,7 @@ const Home = async () => {
           ))}
         </div>
 
-        <div className="relative w-full h-[150px] mt-6 md:h-[300px] md:px-10 lg:hidden">
+        <div className="relative w-full h-[150px] mt-6 md:h-[200px] md:px-10 lg:hidden">
           <Image
             alt="banner"
             src="/banner-01.png"
@@ -91,7 +91,7 @@ const Home = async () => {
         <h2 className="mt-6 mb-3 uppercase text-xs font-bold text-gray-400 md:text-base">
           Recomendados
         </h2>
-        <div className="flex gap-4 overflow-auto md:flex-wrap [&::-webkit-scrollbar]:hidden">
+        <div className="flex gap-4 overflow-auto md:flex-wrap md:gap-6 xl:gap-8 [&::-webkit-scrollbar]:hidden">
           {barbershops.map((barbershop) => (
             <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
@@ -100,7 +100,7 @@ const Home = async () => {
         <h2 className="mt-6 mb-3 uppercase text-xs font-bold text-gray-400 md:text-base">
           Populares
         </h2>
-        <div className="flex gap-4 overflow-auto md:flex-wrap [&::-webkit-scrollbar]:hidden">
+        <div className="flex gap-4 overflow-auto md:flex-wrap md:gap-6 xl:gap-8 [&::-webkit-scrollbar]:hidden">
           {popularBarbershops.map((barbershop) => (
             <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
